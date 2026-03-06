@@ -1,0 +1,17 @@
+langchain
+langchain-community
+langchain-huggingface
+langchain-experimental
+qdrant-client
+sentence-transformers
+pydantic
+pytest
+black
+isort
+flake8
+tiktoken
+nltk
+scikit-learn
+numpy
+rank-bm25
+pandas
