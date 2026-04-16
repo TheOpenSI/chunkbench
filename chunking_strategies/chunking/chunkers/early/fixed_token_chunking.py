@@ -7,7 +7,7 @@ class FixedTokenChunker(BaseChunker):
     Chunks text into fixed-size token segments using tiktoken.
     """
 
-    def __init__(self, chunk_size: int = 256, overlap: int = 20, encoding_name: str = "cl100k_base"):
+    def __init__(self, chunk_size: int, overlap: int, encoding_name: str = "cl100k_base"):
         """
         Initialize the FixedTokenChunker.
 

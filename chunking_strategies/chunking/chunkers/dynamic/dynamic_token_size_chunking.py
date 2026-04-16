@@ -7,7 +7,7 @@ class DynamicTokenSizeChunker(BaseChunker):
     Chunks text into variable token sizes based on simple heuristics (e.g. punctuation).
     """
 
-    def __init__(self, min_chunk_size: int = 50, max_chunk_size: int = 200, encoding_name: str = "cl100k_base"):
+    def __init__(self, min_chunk_size: int, max_chunk_size: int, encoding_name: str = "cl100k_base"):
         self.min_chunk_size = min_chunk_size
         self.max_chunk_size = max_chunk_size
         self.encoding = tiktoken.get_encoding(encoding_name)

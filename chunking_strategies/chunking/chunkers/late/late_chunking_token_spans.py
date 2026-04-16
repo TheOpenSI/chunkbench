@@ -7,7 +7,7 @@ class LateChunkingTokenSpanIndexer(BaseChunker):
     Chunks text into small token spans for late chunking/retrieval strategies.
     """
 
-    def __init__(self, span_size: int = 128, step_size: int = 64, encoding_name: str = "cl100k_base"):
+    def __init__(self, span_size: int, step_size: int, encoding_name: str = "cl100k_base"):
         self.span_size = span_size
         self.step_size = step_size
         self.encoding = tiktoken.get_encoding(encoding_name)

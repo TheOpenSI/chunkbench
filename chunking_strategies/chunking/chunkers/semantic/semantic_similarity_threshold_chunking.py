@@ -11,7 +11,7 @@ class SemanticSimilarityThresholdChunker(BaseChunker):
     drops below a threshold.
     """
 
-    def __init__(self, embedding_model: str = "all-MiniLM-L6-v2", threshold: float = 0.7):
+    def __init__(self, threshold: float, embedding_model: str = "sentence-transformers/all-MiniLM-L6-v2"):
         self.embeddings = HuggingFaceEmbeddings(model_name=embedding_model)
         self.threshold = threshold
 

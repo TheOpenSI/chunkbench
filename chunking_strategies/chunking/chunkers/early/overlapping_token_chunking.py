@@ -9,7 +9,7 @@ class OverlappingTokenChunker(BaseChunker):
     but explicitly named for the benchmark.
     """
 
-    def __init__(self, chunk_size: int = 256, overlap_size: int = 50, encoding_name: str = "cl100k_base"):
+    def __init__(self, chunk_size: int, overlap_size: int, encoding_name: str = "cl100k_base"):
         """
         Initialize the OverlappingTokenChunker.
 

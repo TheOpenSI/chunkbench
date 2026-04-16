@@ -11,7 +11,7 @@ class TopicBasedChunker(BaseChunker):
     Uses Agglomerative Clustering to group temporally adjacent sentences.
     """
 
-    def __init__(self, embedding_model: str = "all-MiniLM-L6-v2", distance_threshold: float = 0.5):
+    def __init__(self, distance_threshold: float, embedding_model: str = "sentence-transformers/all-MiniLM-L6-v2" ):
         self.embeddings = HuggingFaceEmbeddings(model_name=embedding_model)
         self.distance_threshold = distance_threshold
 

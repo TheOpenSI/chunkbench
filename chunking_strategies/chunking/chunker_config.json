@@ -1,0 +1,503 @@
+{
+    "strategies": [
+        {
+            "name": "fixed_character_chunking",
+            "enabled": true,
+            "spec": {
+                "type": "FixedCharacterChunker",
+                "params": {
+                    "chunk_size": 100,
+                    "overlap": 10
+                }
+            }
+        },
+        {
+            "name": "fixed_token_chunking",
+            "enabled": true,
+            "spec": {
+                "type": "FixedTokenChunker",
+                "params": {
+                    "chunk_size": 50,
+                    "overlap": 0
+                }
+            }
+        },
+        {
+            "name": "sliding_window_token_chunking",
+            "enabled": true,
+            "spec": {
+                "type": "SlidingWindowTokenChunker",
+                "params": {
+                    "window_size": 50,
+                    "step_size": 25
+                }
+            }
+        },
+        {
+            "name": "overlapping_token_chunking",
+            "enabled": true,
+            "spec": {
+                "type": "OverlappingTokenChunker",
+                "params": {
+                    "chunk_size": 50,
+                    "overlap_size": 10
+                }
+            }
+        },
+        {
+            "name": "sentence_based_chunking",
+            "enabled": true,
+            "spec": {
+                "type": "SentenceBasedChunker",
+                "params": {}
+            }
+        },
+        {
+            "name": "sentence_group_chunking",
+            "enabled": true,
+            "spec": {
+                "type": "SentenceGroupChunker",
+                "params": {
+                    "sentences_per_chunk": 3,
+                    "overlap": 1
+                }
+            }
+        },
+        {
+            "name": "paragraph_based_chunking",
+            "enabled": true,
+            "spec": {
+                "type": "ParagraphBasedChunker",
+                "params": {}
+            }
+        },
+        {
+            "name": "paragraph_group_chunking",
+            "enabled": true,
+            "spec": {
+                "type": "ParagraphGroupChunker",
+                "params": {
+                    "paragraphs_per_chunk": 2,
+                    "overlap": 1
+                }
+            }
+        },
+        {
+            "name": "recursive_chunking",
+            "enabled": true,
+            "spec": {
+                "type": "RecursiveChunker",
+                "params": {
+                    "chunk_size": 500,
+                    "chunk_overlap": 50
+                }
+            }
+        },
+        {
+            "name": "recursive_token_fallback_chunking",
+            "enabled": true,
+            "spec": {
+                "type": "RecursiveTokenChunker",
+                "params": {
+                    "chunk_size": 100,
+                    "chunk_overlap": 10
+                }
+            }
+        },
+        {
+            "name": "parent_child_chunking",
+            "enabled": true,
+            "spec": {
+                "type": "ParentChildChunker",
+                "params": {
+                    "parent_chunk_size": 500,
+                    "child_chunk_size": 100,
+                    "chunk_overlap": 20
+                }
+            }
+        },
+        {
+            "name": "semantic_embedding_based_chunking",
+            "enabled": true,
+            "spec": {
+                "type": "SemanticEmbeddingChunker",
+                "params": {}
+            }
+        },
+        {
+            "name": "semantic_similarity_threshold_chunking",
+            "enabled": true,
+            "spec": {
+                "type": "SemanticSimilarityThresholdChunker",
+                "params": {
+                    "threshold": 0.6
+                }
+            }
+        },
+        {
+            "name": "topic_based_chunking",
+            "enabled": true,
+            "spec": {
+                "type": "TopicBasedChunker",
+                "params": {
+                    "distance_threshold": 0.4
+                }
+            }
+        },
+        {
+            "name": "semantic_boundary_detection",
+            "enabled": true,
+            "spec": {
+                "type": "SemanticBoundaryChunker",
+                "params": {}
+            }
+        },
+        {
+            "name": "late_chunking_sentence_indexing",
+            "enabled": true,
+            "spec": {
+                "type": "LateChunkingSentenceIndexer",
+                "params": {}
+            }
+        },
+        {
+            "name": "late_chunking_paragraph_indexing",
+            "enabled": true,
+            "spec": {
+                "type": "LateChunkingParagraphIndexer",
+                "params": {}
+            }
+        },
+        {
+            "name": "late_chunking_token_spans",
+            "enabled": true,
+            "spec": {
+                "type": "LateChunkingTokenSpanIndexer",
+                "params": {
+                    "span_size": 128,
+                    "step_size": 64
+                }
+            }
+        },
+        {
+            "name": "dynamic_token_size_chunking",
+            "enabled": true,
+            "spec": {
+                "type": "DynamicTokenSizeChunker",
+                "params": {
+                    "min_chunk_size": 50,
+                    "max_chunk_size": 200
+                }
+            }
+        },
+        {
+            "name": "content_density_adaptive_chunking",
+            "enabled": true,
+            "spec": {
+                "type": "ContentDensityAdaptiveChunker",
+                "params": {
+                    "base_chunk_size": 1000
+                }
+            }
+        },
+        {
+            "name": "semantic_variance_adaptive_chunking",
+            "enabled": true,
+            "spec": {
+                "type": "SemanticVarianceAdaptiveChunker",
+                "params": {
+                    "sensitivity": 0.2
+                }
+            }
+        },
+        {
+            "name": "length_aware_chunking",
+            "enabled": true,
+            "spec": {
+                "type": "LengthAwareChunker",
+                "params": {
+                    "target_length": 500,
+                    "tolerance": 100
+                }
+            }
+        },
+        {
+            "name": "llm_boundary_detection_chunking",
+            "enabled": true,
+            "spec": {
+                "type": "LLMBoundaryDetectionChunker",
+                "params": {}
+            }
+        },
+        {
+            "name": "llm_segment_then_chunk",
+            "enabled": true,
+            "spec": {
+                "type": "LLMSegmentThenChunker",
+                "params": {}
+            }
+        },
+        {
+            "name": "hybrid_semantic_fixed_token_chunking",
+            "enabled": true,
+            "spec": {
+                "type": "HybridChunker",
+                "params": {
+                    "primary_chunker": {
+                        "type": "SemanticEmbeddingChunker",
+                        "params": {}
+                    },
+                    "secondary_chunker": {
+                        "type": "FixedTokenChunker",
+                        "params": {
+                            "chunk_size": 200,
+                            "overlap": 20
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "hybrid_semantic_sliding_window_chunking",
+            "enabled": true,
+            "spec": {
+                "type": "HybridChunker",
+                "params": {
+                    "primary_chunker": {
+                        "type": "SemanticEmbeddingChunker",
+                        "params": {}
+                    },
+                    "secondary_chunker": {
+                        "type": "SlidingWindowTokenChunker",
+                        "params": {
+                            "window_size": 50,
+                            "step_size": 25
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "hybrid_sentence_fixed_token_chunking",
+            "enabled": true,
+            "spec": {
+                "type": "HybridChunker",
+                "params": {
+                    "primary_chunker": {
+                        "type": "SentenceBasedChunker",
+                        "params": {}
+                    },
+                    "secondary_chunker": {
+                        "type": "FixedTokenChunker",
+                        "params": {
+                            "chunk_size": 200,
+                            "overlap": 20
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "hybrid_paragraph_fixed_token_chunking",
+            "enabled": true,
+            "spec": {
+                "type": "HybridChunker",
+                "params": {
+                    "primary_chunker": {
+                        "type": "ParagraphBasedChunker",
+                        "params": {}
+                    },
+                    "secondary_chunker": {
+                        "type": "FixedTokenChunker",
+                        "params": {
+                            "chunk_size": 200,
+                            "overlap": 20
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "hybrid_recursive_fixed_token_chunking",
+            "enabled": true,
+            "spec": {
+                "type": "HybridChunker",
+                "params": {
+                    "primary_chunker": {
+                        "type": "RecursiveChunker",
+                        "params": {
+                            "chunk_size": 500,
+                            "chunk_overlap": 50
+                        }
+                    },
+                    "secondary_chunker": {
+                        "type": "FixedTokenChunker",
+                        "params": {
+                            "chunk_size": 200,
+                            "overlap": 20
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "hybrid_fixed_char_fixed_token_chunking",
+            "enabled": true,
+            "spec": {
+                "type": "HybridChunker",
+                "params": {
+                    "primary_chunker": {
+                        "type": "FixedCharacterChunker",
+                        "params": {
+                            "chunk_size": 100,
+                            "overlap": 10
+                        }
+                    },
+                    "secondary_chunker": {
+                        "type": "FixedTokenChunker",
+                        "params": {
+                            "chunk_size": 200,
+                            "overlap": 20
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "hybrid_overlapping_fixed_token_chunking",
+            "enabled": true,
+            "spec": {
+                "type": "HybridChunker",
+                "params": {
+                    "primary_chunker": {
+                        "type": "OverlappingTokenChunker",
+                        "params": {
+                            "chunk_size": 50,
+                            "overlap_size": 10
+                        }
+                    },
+                    "secondary_chunker": {
+                        "type": "FixedTokenChunker",
+                        "params": {
+                            "chunk_size": 200,
+                            "overlap": 20
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "hybrid_sentence_group_fixed_token_chunking",
+            "enabled": true,
+            "spec": {
+                "type": "HybridChunker",
+                "params": {
+                    "primary_chunker": {
+                        "type": "SentenceGroupChunker",
+                        "params": {
+                            "sentences_per_chunk": 3,
+                            "overlap": 1
+                        }
+                    },
+                    "secondary_chunker": {
+                        "type": "FixedTokenChunker",
+                        "params": {
+                            "chunk_size": 200,
+                            "overlap": 20
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "hybrid_paragraph_group_fixed_token_chunking",
+            "enabled": true,
+            "spec": {
+                "type": "HybridChunker",
+                "params": {
+                    "primary_chunker": {
+                        "type": "ParagraphGroupChunker",
+                        "params": {
+                            "paragraphs_per_chunk": 2,
+                            "overlap": 1
+                        }
+                    },
+                    "secondary_chunker": {
+                        "type": "FixedTokenChunker",
+                        "params": {
+                            "chunk_size": 200,
+                            "overlap": 20
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "hybrid_dynamic_fixed_token_chunking",
+            "enabled": true,
+            "spec": {
+                "type": "HybridChunker",
+                "params": {
+                    "primary_chunker": {
+                        "type": "DynamicTokenSizeChunker",
+                        "params": {
+                            "min_chunk_size": 50,
+                            "max_chunk_size": 200
+                        }
+                    },
+                    "secondary_chunker": {
+                        "type": "FixedTokenChunker",
+                        "params": {
+                            "chunk_size": 200,
+                            "overlap": 20
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "hybrid_content_density_fixed_token_chunking",
+            "enabled": true,
+            "spec": {
+                "type": "HybridChunker",
+                "params": {
+                    "primary_chunker": {
+                        "type": "ContentDensityAdaptiveChunker",
+                        "params": {
+                            "base_chunk_size": 1000
+                        }
+                    },
+                    "secondary_chunker": {
+                        "type": "FixedTokenChunker",
+                        "params": {
+                            "chunk_size": 200,
+                            "overlap": 20
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "hybrid_semantic_variance_fixed_token_chunking",
+            "enabled": true,
+            "spec": {
+                "type": "HybridChunker",
+                "params": {
+                    "primary_chunker": {
+                        "type": "SemanticVarianceAdaptiveChunker",
+                        "params": {
+                            "sensitivity": 0.2
+                        }
+                    },
+                    "secondary_chunker": {
+                        "type": "FixedTokenChunker",
+                        "params": {
+                            "chunk_size": 200,
+                            "overlap": 20
+                        }
+                    }
+                }
+            }
+        }
+    ]
+}

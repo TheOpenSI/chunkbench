@@ -47,7 +47,7 @@ class LLMClient:
       - Loads strictly from local path afterward (no network calls during inference).
 
     Parameters:
-        model_name: Hugging Face repo id (e.g., "mistralai/Mistral-7B-Instruct-v0.3")
+        model_name: Hugging Face repo id (e.g., "sentence-transformers/all-MiniLM-L6-v2")
         llm_fn: Optional callable to bypass HF model loading.
         max_new_tokens: Generation length cap.
         temperature: Sampling temperature. Set 0 for deterministic (no sampling).
@@ -62,7 +62,7 @@ class LLMClient:
 
     def __init__(
         self,
-        model_name: Optional[str] = "mistralai/Mistral-7B-Instruct-v0.3",
+        model_name: Optional[str] = "sentence-transformers/all-MiniLM-L6-v2",
         llm_fn: Optional[Callable[[str], str]] = None,
         max_new_tokens: int = 512,
         temperature: float = 0.1,
@@ -223,7 +223,7 @@ class LLMClient:
 if __name__ == "__main__":
     """
     Quick sanity test:
-      - Downloads 'mistralai/Mistral-7B-Instruct-v0.3' locally with NO token (public repo).
+      - Downloads 'all-MiniLM-L6-v2' locally with NO token (public repo).
       - Generates text and attempts JSON parsing.
     """
 
@@ -235,7 +235,7 @@ if __name__ == "__main__":
     # model_name = "microsoft/Phi-3-mini-4k-instruct"
     # model_name = "google/gemma-2b-it"
 
-    model_name = "mistralai/Mistral-7B-Instruct-v0.3"
+    model_name = "sentence-transformers/all-MiniLM-L6-v2"
 
     client = LLMClient(
         model_name=model_name,

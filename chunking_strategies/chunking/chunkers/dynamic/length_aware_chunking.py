@@ -8,7 +8,7 @@ class LengthAwareChunker(BaseChunker):
     but respecting sentence boundaries.
     """
 
-    def __init__(self, target_length: int = 500, tolerance: int = 100):
+    def __init__(self, target_length: int, tolerance: int):
         self.target_length = target_length
         self.tolerance = tolerance
 

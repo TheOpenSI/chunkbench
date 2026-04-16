@@ -8,7 +8,7 @@ class SemanticBoundaryChunker(BaseChunker):
     Chunks text using gradient-based boundary detection.
     """
 
-    def __init__(self, embedding_model: str = "all-MiniLM-L6-v2"):
+    def __init__(self, embedding_model: str = "sentence-transformers/all-MiniLM-L6-v2"):
         self.embeddings = HuggingFaceEmbeddings(model_name=embedding_model)
         # "gradient" threshold type is what corresponds to boundary detection
         self.splitter = SemanticChunker(self.embeddings, breakpoint_threshold_type="gradient")

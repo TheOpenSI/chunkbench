@@ -7,7 +7,7 @@ class FixedCharacterChunker(BaseChunker):
     Chunks text into fixed-size character segments.
     """
 
-    def __init__(self, chunk_size: int = 1000, overlap: int = 0):
+    def __init__(self, chunk_size: int, overlap: int):
         """
         Initialize the FixedCharacterChunker.
 

@@ -8,7 +8,7 @@ class ContentDensityAdaptiveChunker(BaseChunker):
     Simplified implementation: shorter chunks for dense text (many unique words), longer for sparse.
     """
 
-    def __init__(self, base_chunk_size: int = 1000):
+    def __init__(self, base_chunk_size: int):
         self.base_chunk_size = base_chunk_size
 
     def chunk(self, text: str, doc_id: str) -> List[Chunk]:

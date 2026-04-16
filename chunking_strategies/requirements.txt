@@ -1,3 +1,4 @@
+requests
 langchain
 langchain-community
 langchain-huggingface
@@ -15,3 +16,6 @@ scikit-learn
 numpy
 rank-bm25
 pandas
+tqdm
+accelerate
+psutil

@@ -7,7 +7,7 @@ class SlidingWindowTokenChunker(BaseChunker):
     Chunks text using a sliding window of tokens.
     """
 
-    def __init__(self, window_size: int = 256, step_size: int = 128, encoding_name: str = "cl100k_base"):
+    def __init__(self, window_size: int, step_size: int, encoding_name: str = "cl100k_base"):
         """
         Initialize the SlidingWindowTokenChunker.
 

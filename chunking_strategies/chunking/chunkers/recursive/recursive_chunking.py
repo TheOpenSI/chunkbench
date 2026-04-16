@@ -7,7 +7,7 @@ class RecursiveChunker(BaseChunker):
     Chunks text using recursive character splitting.
     """
 
-    def __init__(self, chunk_size: int = 1000, chunk_overlap: int = 200):
+    def __init__(self, chunk_size: int, chunk_overlap: int):
         self.splitter = RecursiveCharacterTextSplitter(
             chunk_size=chunk_size,
             chunk_overlap=chunk_overlap,

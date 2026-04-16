@@ -6,7 +6,7 @@ class ParagraphGroupChunker(BaseChunker):
     Chunks text into groups of paragraphs.
     """
 
-    def __init__(self, paragraphs_per_chunk: int = 3, overlap: int = 1):
+    def __init__(self, paragraphs_per_chunk: int, overlap: int):
         """
         Initialize the ParagraphGroupChunker.
 

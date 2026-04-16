@@ -7,7 +7,7 @@ class SentenceGroupChunker(BaseChunker):
     Chunks text into groups of sentences.
     """
 
-    def __init__(self, sentences_per_chunk: int = 5, overlap: int = 1):
+    def __init__(self, sentences_per_chunk: int, overlap: int):
         """
         Initialize the SentenceGroupChunker.
 

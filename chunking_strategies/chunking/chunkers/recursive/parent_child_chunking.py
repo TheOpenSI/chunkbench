@@ -7,7 +7,7 @@ class ParentChildChunker(BaseChunker):
     Chunks text into parent chunks and child chunks.
     """
 
-    def __init__(self, parent_chunk_size: int = 1000, child_chunk_size: int = 200, chunk_overlap: int = 20):
+    def __init__(self, parent_chunk_size: int, child_chunk_size: int, chunk_overlap: int):
         self.parent_splitter = RecursiveCharacterTextSplitter(
             chunk_size=parent_chunk_size,
             chunk_overlap=chunk_overlap,

@@ -11,7 +11,7 @@ class SemanticVarianceAdaptiveChunker(BaseChunker):
     If similarity drops significantly compared to recent moving average, split.
     """
 
-    def __init__(self, embedding_model: str = "all-MiniLM-L6-v2", sensitivity: float = 0.2):
+    def __init__(self, sensitivity: float, embedding_model: str = "sentence-transformers/all-MiniLM-L6-v2"):
         self.embeddings = HuggingFaceEmbeddings(model_name=embedding_model)
         self.sensitivity = sensitivity
 

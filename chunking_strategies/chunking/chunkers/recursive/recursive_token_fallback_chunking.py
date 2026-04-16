@@ -7,7 +7,7 @@ class RecursiveTokenChunker(BaseChunker):
     Chunks text using recursive splitting with token counts.
     """
 
-    def __init__(self, chunk_size: int = 256, chunk_overlap: int = 20):
+    def __init__(self, chunk_size: int, chunk_overlap: int):
         self.splitter = RecursiveCharacterTextSplitter.from_tiktoken_encoder(
             chunk_size=chunk_size,
             chunk_overlap=chunk_overlap,
