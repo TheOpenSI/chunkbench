@@ -16,6 +16,16 @@ if "SSL_CERT_FILE" in os.environ and not os.path.exists(os.environ["SSL_CERT_FIL
 # Ensure imports work relative to project root
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
+# Import the config before any chunker: it sets the OMP/MKL thread caps and
+# TOKENIZERS_PARALLELISM, which are only read when torch/tokenizers first load.
+from chunkbench_config import (
+    DOCUMENTS_FILE,
+    apply_torch_threads,
+    chunking_stats_dir,
+    chunks_dir,
+    require,
+)
+
 from chunking.chunkers.early.fixed_character_chunking import FixedCharacterChunker
 from chunking.chunkers.early.fixed_token_chunking import FixedTokenChunker
 from chunking.chunkers.early.sliding_window_token_chunking import SlidingWindowTokenChunker
@@ -43,10 +53,15 @@ from chunking.chunkers.llm.llm_segment_then_chunk import LLMSegmentThenChunker
 from chunking.chunkers.hybrid.hybrid_chunking import HybridChunker
 from chunking.chunkers.base import BaseChunker
 
-DOCUMENTS_FILE = "chunking_strategies/data/domain_context/agriculture_unique_contexts.json"
-CHUNKS_DIR = "chunking_strategies/chunking/chunks"
-STATS_DIR = "chunking_strategies/chunking/stats"
-CONFIG_FILE = "chunking_strategies/chunking/chunker_config.json"
+apply_torch_threads()
+
+CHUNKS_DIR = chunks_dir()
+STATS_DIR = chunking_stats_dir()
+CONFIG_FILE = os.path.join(
+    os.path.dirname(os.path.dirname(os.path.abspath(__file__))),
+    "chunking",
+    "chunker_config.json",
+)
 
 # -------------------------------
 # Helpers
@@ -206,7 +221,7 @@ def run_one_strategy(strategy_name: str, spec: Dict[str, Any]) -> Dict[str, Any]
         chunks = chunker.chunk(doc_text, doc_id)
         t1 = time.perf_counter()
 
-        doc_chunks_dicts = [c.dict() if hasattr(c, "dict") else c for c in chunks]
+        doc_chunks_dicts = [c.model_dump() if hasattr(c, "model_dump") else c for c in chunks]
         count = len(doc_chunks_dicts)
         doc_chunk_counts[doc_id] = count
 
@@ -292,6 +307,8 @@ def main():
     if len(sys.argv) < 2:
         print("Usage: python run_single_strategy.py <strategy_name>", file=sys.stderr)
         sys.exit(2)
+
+    require("DOCUMENTS_FILE", "DOMAINS")
 
     strategy_name = sys.argv[1]
 

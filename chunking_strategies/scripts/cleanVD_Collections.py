@@ -2,18 +2,28 @@
 """
 Remove all collections in a Qdrant instance.
 
+Targets the Qdrant instance configured in chunkbench_config
+(CHUNKBENCH_QDRANT_HOST / CHUNKBENCH_QDRANT_PORT), the same one indexing and
+retrieval use.
+
 Environment variables supported:
-  QDRANT_URL        - e.g., http://localhost:6333 or https://YOUR-CLOUD-ENDPOINT
+  QDRANT_URL        - overrides the configured host/port, e.g. https://YOUR-CLOUD-ENDPOINT
   QDRANT_API_KEY    - required for Qdrant Cloud / secured instances
   QDRANT_TIMEOUT    - optional, in seconds (default: 60)
   DRY_RUN           - set to "1" to only list collections without deletion
 """
 
 import os
+import sys
+
 from qdrant_client import QdrantClient
 
+sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+
+from chunkbench_config import QDRANT_HOST, QDRANT_PORT
+
 def main():
-    url = os.getenv("QDRANT_URL", "http://localhost:6333")
+    url = os.getenv("QDRANT_URL", f"http://{QDRANT_HOST}:{QDRANT_PORT}")
     api_key = os.getenv("QDRANT_API_KEY")
     timeout = float(os.getenv("QDRANT_TIMEOUT", "60"))
     dry_run = os.getenv("DRY_RUN", "0") == "1"
