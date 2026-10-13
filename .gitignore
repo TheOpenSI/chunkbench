@@ -1,0 +1,38 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+dist/
+*.egg-info/
+.venv/
+venv/
+env/
+
+# Benchmark artifacts — every stage writes under results/
+chunking_strategies/results/
+chunking_strategies/scripts/tfidf_vectorizer.pkl
+
+# Legacy output locations (pre-results/ layout)
+chunking_strategies/chunking/chunks/
+chunking_strategies/chunking/stats/
+retrieval/
+judge_data/
+
+# Downloaded corpora
+chunking_strategies/data/global_data/
+chunking_strategies/data/domain_context/
+chunking_strategies/data/bright_data/
+chunking_strategies/data/bright_context/
+
+# Model / dataset caches
+hf_cache/
+models/
+.cache/
+
+# Editor / OS
+.vscode/
+.idea/
+.DS_Store
