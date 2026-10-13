@@ -21,6 +21,8 @@ import re
 import asyncio
 from typing import Optional, Any, Dict, Callable
 
+from chunkbench_config import LLM_CHUNKER_MODEL, require
+
 # Optional import guards
 try:
     from transformers import pipeline, AutoTokenizer
@@ -47,7 +49,7 @@ class LLMClient:
       - Loads strictly from local path afterward (no network calls during inference).
 
     Parameters:
-        model_name: Hugging Face repo id (e.g., "sentence-transformers/all-MiniLM-L6-v2")
+        model_name: Hugging Face repo id of a text-generation model (defaults to LLM_CHUNKER_MODEL in chunkbench_config)
         llm_fn: Optional callable to bypass HF model loading.
         max_new_tokens: Generation length cap.
         temperature: Sampling temperature. Set 0 for deterministic (no sampling).
@@ -62,7 +64,7 @@ class LLMClient:
 
     def __init__(
         self,
-        model_name: Optional[str] = "sentence-transformers/all-MiniLM-L6-v2",
+        model_name: Optional[str] = LLM_CHUNKER_MODEL,
         llm_fn: Optional[Callable[[str], str]] = None,
         max_new_tokens: int = 512,
         temperature: float = 0.1,
@@ -90,6 +92,8 @@ class LLMClient:
                 )
             if not model_name:
                 raise ValueError("model_name must be provided when llm_fn is None.")
+            if model_name == LLM_CHUNKER_MODEL:
+                require("LLM_CHUNKER_MODEL")
 
             # Resolve local directory
             model_local_path = local_model_dir
@@ -222,20 +226,12 @@ class LLMClient:
 # ---------------------------------------------------------------------------
 if __name__ == "__main__":
     """
-    Quick sanity test:
-      - Downloads 'all-MiniLM-L6-v2' locally with NO token (public repo).
+    Quick sanity test of the model configured as LLM_CHUNKER_MODEL:
+      - Downloads it locally with NO token (public repo).
       - Generates text and attempts JSON parsing.
     """
-
-    # Optional: harden offline mode after the first download
-    # os.environ["HF_HUB_OFFLINE"] = "1"
-    # os.environ["HF_HUB_DISABLE_TELEMETRY"] = "1"
-
-    # If you want a lighter model for CPU testing, consider:
-    # model_name = "microsoft/Phi-3-mini-4k-instruct"
-    # model_name = "google/gemma-2b-it"
-
-    model_name = "sentence-transformers/all-MiniLM-L6-v2"
+    require("LLM_CHUNKER_MODEL")
+    model_name = LLM_CHUNKER_MODEL
 
     client = LLMClient(
         model_name=model_name,

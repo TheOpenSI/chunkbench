@@ -1,6 +1,7 @@
 from typing import List
 import numpy as np
-from langchain_huggingface import HuggingFaceEmbeddings
+from chunkbench_config import EMBEDDING_MODEL
+from embeddings import get_embeddings
 from sklearn.metrics.pairwise import cosine_similarity
 import nltk
 from ..base import BaseChunker, Chunk
@@ -11,8 +12,8 @@ class SemanticVarianceAdaptiveChunker(BaseChunker):
     If similarity drops significantly compared to recent moving average, split.
     """
 
-    def __init__(self, sensitivity: float, embedding_model: str = "sentence-transformers/all-MiniLM-L6-v2"):
-        self.embeddings = HuggingFaceEmbeddings(model_name=embedding_model)
+    def __init__(self, sensitivity: float, embedding_model: str = EMBEDDING_MODEL):
+        self.embeddings = get_embeddings(embedding_model)
         self.sensitivity = sensitivity
 
     def chunk(self, text: str, doc_id: str) -> List[Chunk]:

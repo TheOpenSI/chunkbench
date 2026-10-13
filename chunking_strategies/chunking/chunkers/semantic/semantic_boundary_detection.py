@@ -1,6 +1,7 @@
 from typing import List
 from langchain_experimental.text_splitter import SemanticChunker
-from langchain_huggingface import HuggingFaceEmbeddings
+from chunkbench_config import EMBEDDING_MODEL
+from embeddings import get_embeddings
 from ..base import BaseChunker, Chunk
 
 class SemanticBoundaryChunker(BaseChunker):
@@ -8,8 +9,8 @@ class SemanticBoundaryChunker(BaseChunker):
     Chunks text using gradient-based boundary detection.
     """
 
-    def __init__(self, embedding_model: str = "sentence-transformers/all-MiniLM-L6-v2"):
-        self.embeddings = HuggingFaceEmbeddings(model_name=embedding_model)
+    def __init__(self, embedding_model: str = EMBEDDING_MODEL):
+        self.embeddings = get_embeddings(embedding_model)
         # "gradient" threshold type is what corresponds to boundary detection
         self.splitter = SemanticChunker(self.embeddings, breakpoint_threshold_type="gradient")
 

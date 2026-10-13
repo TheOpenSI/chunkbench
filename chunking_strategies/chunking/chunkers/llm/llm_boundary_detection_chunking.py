@@ -79,6 +79,30 @@ class LLMBoundaryDetectionChunker(BaseChunker):
 
     # ----------------- heuristic chunking -----------------
 
+    @staticmethod
+    def _split_sentences(paragraph: str) -> List[str]:
+        """
+        Splits a paragraph into sentences, keeping the terminating punctuation.
+
+        `re.split` on a capturing pattern returns [text, delim, text, delim, ...]
+        and, when the paragraph does not end with a matched delimiter, a final
+        unterminated segment. That trailing segment must be kept: the regex needs
+        whitespace after the punctuation, so the last sentence of a paragraph
+        never matches, and dropping it silently loses text (a single-sentence
+        paragraph would yield nothing at all).
+        """
+        parts = _SENT_END_RE.split(paragraph)
+
+        sentences = []
+        for i in range(0, len(parts) - 1, 2):
+            sentences.append(parts[i] + parts[i + 1])
+
+        # Odd length means the final element is an unterminated tail.
+        if len(parts) % 2 == 1 and parts[-1].strip():
+            sentences.append(parts[-1])
+
+        return sentences
+
     def _heuristic_chunk(self, text: str) -> List[str]:
         paragraphs = [p for p in text.split("\n\n") if p.strip()]
 
@@ -86,12 +110,10 @@ class LLMBoundaryDetectionChunker(BaseChunker):
         buf = ""
 
         for p in paragraphs:
-            sentences = _SENT_END_RE.split(p)
+            sentences = self._split_sentences(p)
 
             sent_buf = ""
-            for i in range(0, len(sentences) - 1, 2):
-                sentence = sentences[i] + sentences[i + 1]
-
+            for sentence in sentences:
                 if len(sent_buf) + len(sentence) <= self.max_chars:
                     sent_buf += sentence
                 else:
